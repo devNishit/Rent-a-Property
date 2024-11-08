@@ -1,0 +1,102 @@
+.card{
+    width:18rem;
+}
+
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+a{
+    text-decoration: none;
+}
+
+.card-img-top{
+    height: 12rem;
+}
+
+.card-text{
+    text-overflow: ellipsis;
+    overflow: hidden;
+  white-space: nowrap;
+}
+
+.card-title{
+    margin-bottom: 10px;
+}
+
+.delFrom{
+    display: inline;
+    margin-left: 15px;
+}
+.img-fluid{
+    width:70vw;
+    height: 50vh;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+.img-fluid-con{
+margin-top: 35px;
+width:70vw;
+margin-bottom: 10px;
+
+}
+
+.copyright{
+    text-align: center;
+}
+
+i{
+    margin-right: 5px;
+}
+
+nav{
+    margin-bottom: 1000px;
+}
+
+.addform, .editform{
+    margin-top: 65px !important;
+    
+}
+
+.addbtn{
+    margin-top: 35px;
+}
+
+footer{
+    background-color: rgb(66, 66, 66);
+    position: relative;
+    left: 0;
+    bottom:0; 
+    width: 100%;
+    color: white;
+    padding: 10px;
+    
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+     min-height: 100vh;
+   
+}
+
+.body{
+    flex: 1;
+    
+}
+
+.card-img-top:hover{
+    opacity: 60%;
+}
+
+.alert-danger{
+    margin-top: 70px;
+    margin-left: 50px;
+    margin-right: 50px;
+}

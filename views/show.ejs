@@ -1,0 +1,19 @@
+<% layout('/layouts/boilerplate') -%>
+<body>
+    <div class="container img-fluid-con">
+    <img class="img-fluid" src="<%= data.image %>">
+    <h2 class="card-title"> <%= data.title %> </h2>
+    
+       <p> <%= data.description %> </p>
+       <i class="fa-solid fa-globe"></i> <%= data.country %> <br>
+       <i class="fa-solid fa-location-dot"></i>  <%= data.location %> <br>
+       <i class="fa-solid fa-dollar"></i> &dollar;<%= data.price %> per night <br>
+    
+    <br> 
+    <a class="btn btn-primary" href="/edit/<%= data._id%>">Edit</a>
+    <form class="delFrom" action="/delete/<%= data._id%>?_method=DELETE" method="post">
+    <button class="btn-danger btn">Delete</button>
+    </form>
+</div>
+    
+</body>

@@ -1,0 +1,20 @@
+<% layout('/layouts/boilerplate') -%>
+<body>
+    <h2 class="m-3">All Properties</h2>
+   
+    <a class="m-3 btn-primary btn addbtn" href="/add">Add New</a><br><br>
+    <div class="flex-container">
+
+         <% for (const list of data) { %>
+             <a class="m-3 pl-3 card" href="/show/<%= list._id%>">
+                <img src="<%= list.image %>" class="card-img-top">
+                <div class="card-body" >
+                <h5 class="card-title">  <%= list.title %> </h5>
+                <p class="card-text"><%= list.description %></p>
+                </div>
+            </a>
+            <% } %>
+    </div>
+    <br>
+   
+</body>
