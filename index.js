@@ -3,11 +3,13 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const listing=require('./models/listings');
+const review=require('./models/reviews');
 const methodOverride=require('method-override');
 const engine= require('ejs-mate');
 const expressError= require('./utils/expressError');
 const wrapAsync = require('./utils/wrapAsync');
-const joiValidastion = require('./Validation/joiValidation');
+const listingValidastion = require('./Validation/listingValidation');
+const reviewValidastion = require('./Validation/reviewValidation');
 const port = 8080;
 
 
@@ -40,7 +42,16 @@ app.get('/',wrapAsync(async(req,res)=>{
 app.get('/show/:id', wrapAsync (async(req,res)=>{
     let {id}= req.params;
     let data = await listing.findById(id);
-    res.render('show.ejs',{data});
+    let reviewList=[];
+
+    // fetch reviews
+    for(rev of data.review){
+        let data = await review.findById(rev);
+        console.log(data);
+        reviewList.push(data);
+    }
+    
+    res.render('show.ejs',{data,reviewList});
 }))
 
 // Edit Listing
@@ -50,7 +61,7 @@ app.get('/edit/:id',wrapAsync (async(req,res)=>{
     res.render('edit.ejs',{data});
 }))
 
-app.put('/edit/:id',joiValidastion, wrapAsync (async(req,res)=>{
+app.put('/edit/:id',listingValidastion, wrapAsync (async(req,res)=>{
     let {id}= req.params;
     let newData = req.body['list'];
     let update = await listing.findByIdAndUpdate(id,newData,{runValidators: true});
@@ -76,6 +87,27 @@ app.post('/add',wrapAsync (async (req,res)=>{
     let newList= new listing(formData);
     await newList.save();
     res.redirect("/");
+}))
+
+// Add new Review
+app.post('/show/:listingId/review/add', reviewValidastion, wrapAsync(async (req,res)=>{
+    let {listingId} = req.params;
+    let reviewData = req.body['review'];
+    let newReview = new review(reviewData);
+    await newReview.save();
+
+    // Add review in listing
+   await listing.findByIdAndUpdate(listingId,{$push:{review:newReview}});
+   res.redirect(`/show/${listingId}`);
+}))
+
+//Delete the Review
+app.delete('/show/:listingId/review/:id', wrapAsync(async (req,res)=>{
+    let{listingId,id} = req.params;
+    await review.findByIdAndDelete(id);
+   let temp= await listing.findByIdAndUpdate(listingId,{$pull:{review:id}});
+    console.log(temp);
+   res.redirect(`/show/${listingId}`);
 }))
 
 

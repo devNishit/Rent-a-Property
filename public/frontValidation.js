@@ -18,6 +18,3 @@
         }, false)
       })
   })()
-
-
-  console.log("Hi rahi che");

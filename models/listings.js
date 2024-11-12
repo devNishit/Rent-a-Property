@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const review=require('./reviews');
 
 const listingSchema= new mongoose.Schema({
     title:{
@@ -27,7 +28,27 @@ const listingSchema= new mongoose.Schema({
         required:true
     },
 
+    review:
+        [
+            { 
+              type:"ObjectId",
+              ref:"review"
+            }
+        ],
+    
+
 });
+
+
+// Delete all review after delete the listing
+listingSchema.post('findOneAndDelete', async(data,next)=>{
+   
+    for (const rev of data['review'])
+     { 
+        await review.findByIdAndDelete(rev);
+     };
+    next();
+})
 
 
 const listing = mongoose.model('listing',listingSchema);

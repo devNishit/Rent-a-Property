@@ -14,6 +14,44 @@
     <form class="delFrom" action="/delete/<%= data._id%>?_method=DELETE" method="post">
     <button class="btn-danger btn">Delete</button>
     </form>
+
+    <hr>
+
+    <div class="review-container">
+        <p class="h3">Reviews</p>
+        <form action="/show/<%= data._id%>/review/add" method="post" class="m-3 needs-validation" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="msg">Review</label>
+                <input placeholder="Write a review" name="review[msg]" class="form-control" id="msg" required>
+            <div class="invalid-feedback">
+                Please write review
+              </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="rating">Rating</label>
+                <input type="range" min="1" max="5" placeholder="set rating" name="review[rating]" class="form-control" id="rating" required>
+            <div class="rating">
+                Rating :
+              </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Add Review">
+        </form>
+    </div>
+
+    <div class="reviewList row">
+    <hr>
+      <%  for(rev of reviewList){ %>
+            <div class="card m-3">
+                <div class="card-body">
+                    <p class="card-text"><%= rev.msg %></p>
+                    <p class="card-text"><%= rev.rating %> star</p>
+                    <form action="/show/<%= data.id %>/review/<%= rev.id %>?_method=DELETE" method="post">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+       <% } %>
+    </div>
 </div>
     
 </body>
