@@ -10,8 +10,8 @@
        <i class="fa-solid fa-dollar"></i> &dollar;<%= data.price %> per night <br>
     
     <br> 
-    <a class="btn btn-primary" href="/edit/<%= data._id%>">Edit</a>
-    <form class="delFrom" action="/delete/<%= data._id%>?_method=DELETE" method="post">
+    <a class="btn btn-primary" href="/listing/edit/<%= data._id%>">Edit</a>
+    <form class="delFrom" action="/listing/delete/<%= data._id%>?_method=DELETE" method="post">
     <button class="btn-danger btn">Delete</button>
     </form>
 

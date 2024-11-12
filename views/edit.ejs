@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') -%>
 
 <body>
-    <form class="m-3 editform needs-validation" action="/edit/<%= data._id %>?_method=PUT" method="post" novalidate>
+    <form class="m-3 editform needs-validation" action="/listing/edit/<%= data._id %>?_method=PUT" method="post" novalidate>
         <div class="mb-3">
             <label class="form-label" for="title">Title</label>
             <input placeholder="Add Title" value="<%= data.title %>" name="list[title]" class="form-control" id="title" required>
