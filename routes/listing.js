@@ -11,6 +11,13 @@ const listingValidastion = require('../Validation/listingValidation');
 router.get('/show/:id', wrapAsync (async(req,res)=>{
     let {id}= req.params;
     let data = await listing.findById(id);
+
+    // failer flash msg
+    if(!data){
+        req.flash('failer','Listing not found');
+        res.redirect('/');
+    }
+
     let reviewList=[];
 
     // fetch reviews
@@ -27,6 +34,13 @@ router.get('/show/:id', wrapAsync (async(req,res)=>{
 router.get('/edit/:id',wrapAsync (async(req,res)=>{
     let {id}= req.params;
     let data = await listing.findById(id);
+
+    // failer flash msg
+    if(!data){
+        req.flash('failer','Listing not found');
+        res.redirect('/');
+    }
+
     res.render('edit.ejs',{data});
 }))
 
@@ -35,6 +49,7 @@ router.put('/edit/:id',listingValidastion, wrapAsync (async(req,res)=>{
     let newData = req.body['list'];
     let update = await listing.findByIdAndUpdate(id,newData,{runValidators: true});
     console.log(update);
+    req.flash('success','Listing successfully edited')
     res.redirect(`/listing/show/${id}`);
 }))
 
@@ -43,6 +58,7 @@ router.delete('/delete/:id', wrapAsync (async(req,res)=>{
     let {id}= req.params;
     let del = await listing.findByIdAndDelete(id);
     console.log(del);
+    req.flash('success','Listing successfully deleted')
     res.redirect("/");
 }))
 
@@ -55,6 +71,7 @@ router.post('/add',wrapAsync (async (req,res)=>{
     let formData = req.body['list']
     let newList= new listing(formData);
     await newList.save();
+    req.flash('success','New listing successfully Added');
     res.redirect("/");
 }))
 

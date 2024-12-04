@@ -7,6 +7,8 @@ const methodOverride=require('method-override');
 const engine= require('ejs-mate');
 const expressError= require('./utils/expressError');
 const wrapAsync = require('./utils/wrapAsync');
+const session = require('express-session');
+const flash= require('express-flash');
 const lsitingRoute = require('./routes/listing');
 const reviewRoute = require('./routes/review');
 const port = 8080;
@@ -19,6 +21,19 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(flash());
+
+// Session
+const sessionInfo ={
+    secret:"ReantAProprrty",
+    resave:true,
+    saveUninitialized: false,
+    cookie:{
+        expires:Date.now()+ 7*24*60*60*1000
+    }
+
+}
+app.use(session(sessionInfo))
 
 // connection to mongooes
 async function main(){
@@ -27,11 +42,19 @@ async function main(){
 
 main().catch(e=>console.log(e));
 
+// Midderware for flashMsg
+app.use((req,res,next)=>{
+    res.locals.successMsg=req.flash('success');
+    res.locals.failerMsg=req.flash('failer');
+    next();
+})
+
 // Home Route
 app.get('/',wrapAsync(async(req,res)=>{
     let data= await listing.find({});
     res.render("index.ejs",{data});
 })) 
+
 
 // Other routes
 app.use('/listing',lsitingRoute);
