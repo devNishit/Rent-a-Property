@@ -12,7 +12,7 @@ const listingSchema= new mongoose.Schema({
     },
     image:{
         type:String,
-        // set:(e)=>{if(e===""){e="https://pixabay.com/photos/door-stairs-window-facade-shutters-8029228/"}},
+       // set:(e)=>{if(e==""){e="https://pixabay.com/photos/door-stairs-window-facade-shutters-8029228/"}},
         default:"https://pixabay.com/photos/school-house-building-desert-6982073/"
     },
     country:{
@@ -35,7 +35,12 @@ const listingSchema= new mongoose.Schema({
               ref:"review"
             }
         ],
-    
+    owner:{
+
+            type:"ObjectId",
+            ref:"user" 
+
+             },
 
 });
 

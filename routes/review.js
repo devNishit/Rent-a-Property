@@ -4,12 +4,16 @@ const listing=require('../models/listings');
 const review=require('../models/reviews');
 const wrapAsync = require('../utils/wrapAsync');
 const reviewValidastion = require('../Validation/reviewValidation');
+const {isAuth} = require('../middleware.js');
 
 // Add new Review
-router.post('/add', reviewValidastion, wrapAsync(async (req,res)=>{
+router.post('/add',isAuth, reviewValidastion, wrapAsync(async (req,res)=>{
     let {listingId} = req.params;
     let reviewData = req.body['review'];
     let newReview = new review(reviewData);
+
+    // add currUser info
+    newReview.owner = req.user;
     await newReview.save();
 
     // Add review in listing
@@ -23,13 +27,26 @@ router.post('/add', reviewValidastion, wrapAsync(async (req,res)=>{
 //Delete the Review
 router.delete('/:id', wrapAsync(async (req,res)=>{
     let{listingId,id} = req.params;
-    await review.findByIdAndDelete(id);
+    
+    // find owner id and compare it to currUser
+    let revOwner = await review.findById(id).populate('owner');
+   
+    if(req.user && String(revOwner.owner._id) == String(req.user._id ))
+        {
+
+        await review.findByIdAndDelete(id);
    let temp= await listing.findByIdAndUpdate(listingId,{$pull:{review:id}});
-    console.log(temp);
+    // console.log(temp);
 
     // flash message
     req.flash('success','Review Deleted');
    res.redirect(`/listing/show/${listingId}`);
+    } else{
+        req.flash("error","You Not have permission to delete review");
+        res.redirect(`/listing/show/${listingId}`);
+    }
+
+    
 }))
 
 module.exports = router;

@@ -9,7 +9,11 @@ const reviewSchema = new mongoose.Schema({
     rating:{
         type:Number,
         required:true
-    }
+    },
+    owner:{
+        type:"ObjectId",
+        ref:"user" 
+         },
 });
 
 const review = mongoose.model("review",reviewSchema);

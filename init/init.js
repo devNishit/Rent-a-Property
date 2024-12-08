@@ -116,7 +116,10 @@ const properties = [
   }
 ];
 
-  
+// add owner name to listings
+for (const obj of properties) {
+  obj.owner = '675568ee2d02385d9ce1c98f';
+}
   
   
 async function dbInIt(){

@@ -2,23 +2,31 @@
 <body>
     <div class="container img-fluid-con">
     <img class="img-fluid" src="<%= data.image %>">
+    <p> <i class="fa-solid fa-user"></i><%= data.owner.username %> </p>
     <h2 class="card-title"> <%= data.title %> </h2>
     
        <p> <%= data.description %> </p>
        <i class="fa-solid fa-globe"></i> <%= data.country %> <br>
        <i class="fa-solid fa-location-dot"></i>  <%= data.location %> <br>
        <i class="fa-solid fa-dollar"></i> &dollar;<%= data.price %> per night <br>
-    
+       
+     <% if(currUser && String(currUser._id) === String(data.owner._id)){ %>
     <br> 
+    
     <a class="btn btn-primary" href="/listing/edit/<%= data._id%>">Edit</a>
     <form class="delFrom" action="/listing/delete/<%= data._id%>?_method=DELETE" method="post">
     <button class="btn-danger btn">Delete</button>
     </form>
-
+   <% } %>
     <hr>
 
     <div class="review-container">
+
+    <% if(currUser || reviewList.length){ %>
         <p class="h3">Reviews</p>
+   <% } %>
+
+       <% if(currUser){ %>
         <form action="/show/<%= data._id%>/review/add" method="post" class="m-3 needs-validation" novalidate>
             <div class="mb-3">
                 <label class="form-label" for="msg">Review</label>
@@ -36,18 +44,26 @@
             </div>
             <input class="btn btn-primary" type="submit" value="Add Review">
         </form>
+        <hr>
+        <% } %>
     </div>
 
     <div class="reviewList row">
-    <hr>
+    
       <%  for(rev of reviewList){ %>
             <div class="card m-3">
                 <div class="card-body">
+                    <p><i class="fa-solid fa-user"></i><%= rev.owner.username %></p>
                     <p class="card-text"><%= rev.msg %></p>
                     <p class="card-text"><%= rev.rating %> star</p>
+
+                    <% if((currUser) && String(currUser._id) === String(rev.owner._id)){ %>
                     <form action="/show/<%= data.id %>/review/<%= rev.id %>?_method=DELETE" method="post">
                         <button class="btn btn-sm btn-danger">Delete</button>
                     </form>
+                    <% } %>
+                
+
                 </div>
             </div>
        <% } %>
