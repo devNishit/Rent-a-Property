@@ -1,88 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const listing=require('../models/listings');
-const review=require('../models/reviews');
 const wrapAsync = require('../utils/wrapAsync');
 const listingValidastion = require('../Validation/listingValidation');
-const passport = require('passport');
 const {isAuth,isOwner} = require('../middleware.js');
+const listingController = require('../controller/listing.js');
 
 
 
 // Show listing
-router.get('/show/:id', wrapAsync (async(req,res)=>{
-    let {id}= req.params;
-    let data = await listing.findById(id).populate('owner');
-    
-    // get listing ownerId
-    req.session.listingOwner = data.owner._id;
+router.get('/show/:id', wrapAsync (listingController.showListing));
 
+// Render Edit form
+router.get('/edit/:id',isOwner, wrapAsync (listingController.editForm))
 
-    // failer flash msg
-    if(!data){
-        req.flash('failer','Listing not found');
-        res.redirect('/');
-    }
-
-    let reviewList=[];
-
-    // fetch reviews
-    for(rev of data.review){
-        let data = await review.findById(rev).populate('owner');
-        reviewList.push(data);
-    }
-    
-    // console.log(reviewList);
-    res.render('show.ejs',{data,reviewList});
-    
-}))
-
-// Edit Listing
-router.get('/edit/:id',isOwner, wrapAsync (async(req,res)=>{
-    let {id}= req.params;
-    let data = await listing.findById(id);
-
-    // failer flash msg
-    if(!data){
-        req.flash('failer','Listing not found');
-        res.redirect('/');
-    }
-
-    res.render('edit.ejs',{data});
-}))
-
-router.put('/edit/:id',isOwner,listingValidastion, wrapAsync (async(req,res)=>{
-    let {id}= req.params;
-    let newData = req.body['list'];
-    let update = await listing.findByIdAndUpdate(id,newData,{runValidators: true});
-    console.log(update);
-    req.flash('success','Listing successfully edited')
-    res.redirect(`/listing/show/${id}`);
-}))
+// Edit listing
+router.put('/edit/:id',isOwner,listingValidastion, wrapAsync (listingController.editListing))
 
 // Delete Listing
-router.delete('/delete/:id', isOwner, wrapAsync (async(req,res)=>{
-    let {id}= req.params;
-    let del = await listing.findByIdAndDelete(id);
-    console.log(del);
-    req.flash('success','Listing successfully deleted')
-    res.redirect("/");
-}))
+router.delete('/delete/:id', isOwner, wrapAsync (listingController.destroyListing))
+
+// Render new listing 
+router.get('/add', isAuth, wrapAsync (listingController.newListingForm))
 
 // Add new listing
-router.get('/add', isAuth, wrapAsync ((req,res)=>{
-    res.render("add.ejs");
-}))
-
-router.post('/add',isAuth,wrapAsync (async (req,res)=>{
-    let formData = req.body['list']
-    let newList= new listing(formData);
-
-    // add currUser info
-    newList.owner = req.user;
-    await newList.save();
-    req.flash('success','New listing successfully Added');
-    res.redirect("/");
-}))
+router.post('/add',isAuth,wrapAsync (listingController.addListing))
 
 module.exports = router;
