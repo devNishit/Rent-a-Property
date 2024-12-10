@@ -13,15 +13,10 @@ passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 
 
-//Registration form
-router.get('/register', userController.registrationForm)
-
 //register
-router.post('/register',wrapAsync ( userController.register ))
-
-
-//Login form
-router.get('/login', userController.loginForm)
+router.route('/register')
+.get( userController.registrationForm)
+.post(wrapAsync ( userController.register ))
 
 // authetication middelwere
 const authetication = passport.authenticate('local',{
@@ -30,11 +25,12 @@ const authetication = passport.authenticate('local',{
 })
 
 //login
-router.post('/login',authetication,userController.login)
+router.route('/login')
+.get( userController.loginForm)
+.post(authetication,userController.login)
 
 //logout
 router.get('/logout',userController.logout)
-
 
 module.exports = router;
 
