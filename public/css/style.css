@@ -109,3 +109,13 @@ body{
 .flashMsg{
     margin-top: 3.6rem;
 }
+
+.EditImg p{
+    
+    font-size: 12px;
+    margin-bottom: 1px;
+}
+
+.EditImg{
+    margin-bottom: 3px;
+}

@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') -%>
 <body>
     <div class="container img-fluid-con">
-    <img class="img-fluid" src="<%= data.image %>">
+    <img class="img-fluid" src="<%= data.image.path %>">
     <p> <i class="fa-solid fa-user"></i><%= data.owner.username %> </p>
     <h2 class="card-title"> <%= data.title %> </h2>
     

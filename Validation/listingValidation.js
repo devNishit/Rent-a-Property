@@ -8,6 +8,7 @@ const listingValidastion = async(req,res,next)=>{
       await listingSchema.validateAsync(req.body['list']);
       next();
     } catch(e){
+      
     next(new expressError(500,e.details.map(detail => detail.message).join(', ')));
     
   }

@@ -35,6 +35,9 @@ module.exports.showListing = async(req,res)=>{
 module.exports.editForm = async(req,res)=>{
     let {id}= req.params;
     let data = await listing.findById(id);
+    
+    // Decreasing Image Quality
+    data.image.path = data.image.path.replace('upload','upload/w_200,f_auto');
 
     // failer flash msg
     if(!data){
@@ -49,7 +52,13 @@ module.exports.editForm = async(req,res)=>{
 // Edit listing
 module.exports.editListing = async(req,res)=>{
     let {id}= req.params;
-    let newData = req.body['list'];
+    let newData = req.body['list']; 
+    
+    if(req.file){
+        let {path,filename} = req.file;
+        newData.image = {path,filename};
+    }
+
     let update = await listing.findByIdAndUpdate(id,newData,{runValidators: true});
     console.log(update);
     req.flash('success','Listing successfully edited')
@@ -76,8 +85,13 @@ module.exports.addListing = async (req,res)=>{
     let formData = req.body['list']
     let newList= new listing(formData);
 
+    // add imageInfo
+    let {path, filename} = req.file;
+    newList.image = {path,filename};
+
     // add currUser info
     newList.owner = req.user;
+    
     await newList.save();
     req.flash('success','New listing successfully Added');
     res.redirect("/");

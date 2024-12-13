@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') -%>
 
 <body>
-    <form class="m-3 editform needs-validation" action="/listing/edit/<%= data._id %>?_method=PUT" method="post" novalidate>
+    <form class="m-3 editform needs-validation" action="/listing/edit/<%= data._id %>?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
         <div class="mb-3">
             <label class="form-label" for="title">Title</label>
             <input placeholder="Add Title" value="<%= data.title %>" name="list[title]" class="form-control" id="title" required>
@@ -20,10 +20,13 @@
         
         <div class="mb-3">
             <label class="form-label" for="image">Image</label>
-            <input placeholder="Add Image URL" value="<%= data.image %>" name="list[image]" class="form-control" id="image" required>
-            <div class="invalid-feedback">
-                Please Add Image URL
-              </div>
+            <div class="EditImg">
+                 <p>Current image</p>
+                 <img src="<%= data.image.path %>">
+             </div>
+            
+            <input type="file" name="list[image]" class="form-control" id="image">
+            
         </div>
 
         <div class="row">

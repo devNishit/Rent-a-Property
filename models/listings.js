@@ -11,9 +11,8 @@ const listingSchema= new mongoose.Schema({
         required:true
     },
     image:{
-        type:String,
-       // set:(e)=>{if(e==""){e="https://pixabay.com/photos/door-stairs-window-facade-shutters-8029228/"}},
-        default:"https://pixabay.com/photos/school-house-building-desert-6982073/"
+        path:String,
+        filename:String
     },
     country:{
         type:String,

@@ -10,6 +10,7 @@ const wrapAsync = require('./utils/wrapAsync');
 const session = require('express-session');
 const flash= require('express-flash');
 const passport = require('passport');
+
 const lsitingRoute = require('./routes/listing');
 const reviewRoute = require('./routes/review');
 const userRoute = require('./routes/user');
@@ -24,7 +25,6 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(flash());
-
 
 // Session
 const sessionInfo ={
@@ -42,8 +42,6 @@ app.use(session(sessionInfo));
 // passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 
 // connection to mongooes
