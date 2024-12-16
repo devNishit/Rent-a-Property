@@ -13,7 +13,7 @@ module.exports.addReview = async (req,res)=>{
     await newReview.save();
 
     // Add review in listing
-   await listing.findByIdAndUpdate(listingId,{$push:{review:newReview}});
+ let temp =  await listing.findByIdAndUpdate(listingId,{$push:{review:newReview}});
 
    //sucees flashMag
    req.flash('success','Review Added');
@@ -27,10 +27,10 @@ module.exports.destroyReview = async (req,res)=>{
     // find owner id and compare it to currUser
     let revOwner = await review.findById(id).populate('owner');
    
-    if(req.user && String(revOwner.owner._id) == String(req.user._id ))
+    if(req.user && (String(revOwner.owner._id) == String(req.user._id )))
         {
 
-        await review.findByIdAndDelete(id);
+    await review.findByIdAndDelete(id);
    let temp= await listing.findByIdAndUpdate(listingId,{$pull:{review:id}});
     // console.log(temp);
 

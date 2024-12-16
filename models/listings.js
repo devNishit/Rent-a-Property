@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const review=require('./reviews');
+const { required } = require('joi');
 
 const listingSchema= new mongoose.Schema({
     title:{
@@ -40,6 +41,19 @@ const listingSchema= new mongoose.Schema({
             ref:"user" 
 
              },
+    geoData:{
+        type:{
+            type:String,
+            enum:['Point'],
+            default:"Point",
+            required:true
+        },
+        coordinates:{
+            type:[Number],
+            required:true
+        }
+    },
+            
 
 });
 

@@ -1,4 +1,9 @@
 <% layout('/layouts/boilerplate') -%>
+<!-- send data to mapJs -->
+ <script> 
+      listingData = <%- JSON.stringify(data) %>;
+ </script>
+
 <body>
     <div class="container img-fluid-con">
     <img class="img-fluid" src="<%= data.image.path %>">
@@ -10,16 +15,16 @@
        <i class="fa-solid fa-location-dot"></i>  <%= data.location %> <br>
        <i class="fa-solid fa-dollar"></i> &dollar;<%= data.price %> per night <br>
        
-     <% if(currUser && String(currUser._id) === String(data.owner._id)){ %>
+    <!-- Edit and Delte button visibility -->
+     <% if(currUser && (String(currUser._id) === String(data.owner._id))){ %>
     <br> 
-    
     <a class="btn btn-primary" href="/listing/edit/<%= data._id%>">Edit</a>
     <form class="delFrom" action="/listing/delete/<%= data._id%>?_method=DELETE" method="post">
     <button class="btn-danger btn">Delete</button>
     </form>
-   <% } %>
-    <hr>
-
+    <% } %>
+ 
+    <!-- Add review -->
     <div class="review-container">
 
     <% if(currUser || reviewList.length){ %>
@@ -63,9 +68,12 @@
         <% } %>
     </div>
 
+
+    <!--  Reviews -->
+
     <div class="reviewList row">
     
-      <%  for(rev of reviewList){ %>
+      <%  for(let rev of reviewList){ %>
             <div class="card m-3">
                 <div class="card-body">
                     <p><i class="fa-solid fa-user"></i><%= rev.owner.username %></p>
@@ -91,6 +99,10 @@
             </div>
        <% } %>
     </div>
+
+    <!-- Map -->
+    <p class="h3">Navigation</p>
+    <div id="map"></div>
 </div>
     
 </body>

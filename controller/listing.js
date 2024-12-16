@@ -1,6 +1,6 @@
 const listing=require('../models/listings');
 const review=require('../models/reviews');
-// const passport = require('passport');
+const featchGeoData=require('../utils/featchGeoData');
 
 
 // Show listing
@@ -54,10 +54,18 @@ module.exports.editListing = async(req,res)=>{
     let {id}= req.params;
     let newData = req.body['list']; 
     
+
+    // edit image
     if(req.file){
         let {path,filename} = req.file;
         newData.image = {path,filename};
     }
+
+    // upDate GeoData
+    let location = req.body['list']['location'];
+    let country = req.body['list']['country'];
+    newData.geoData = {coordinates: await featchGeoData(location,country), type:"Point"};
+
 
     let update = await listing.findByIdAndUpdate(id,newData,{runValidators: true});
     console.log(update);
@@ -82,6 +90,7 @@ module.exports.newListingForm = (req,res)=>{
 // Add new listing
 
 module.exports.addListing = async (req,res)=>{
+
     let formData = req.body['list']
     let newList= new listing(formData);
 
@@ -91,6 +100,11 @@ module.exports.addListing = async (req,res)=>{
 
     // add currUser info
     newList.owner = req.user;
+
+    // add GeoData
+    let location = req.body['list']['location'];
+    let country = req.body['list']['country'];
+    newList.geoData = {coordinates: await featchGeoData(location,country), type:"Point"};
     
     await newList.save();
     req.flash('success','New listing successfully Added');

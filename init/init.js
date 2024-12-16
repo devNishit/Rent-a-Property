@@ -19,7 +19,8 @@ const properties = [
     },
     country: "USA",
     location: "Miami, Florida",
-    price: 1200
+    price: 1200,
+    geoData: { type: "Point", coordinates: [-80.1917902, 25.7616798] }
   },
   {
     title: "Modern Apartment",
@@ -30,7 +31,8 @@ const properties = [
     },
     country: "Canada",
     location: "Toronto, Ontario",
-    price: 350
+    price: 350,
+    geoData: { type: "Point", coordinates: [-79.3831843, 43.653226] }
   },
   {
     title: "Country House",
@@ -41,7 +43,8 @@ const properties = [
     },
     country: "UK",
     location: "Cotswolds, England",
-    price: 200
+    price: 200,
+    geoData: { type: "Point", coordinates: [-1.720085, 51.833111] }
   },
   {
     title: "Beachfront Condo",
@@ -52,7 +55,8 @@ const properties = [
     },
     country: "Mexico",
     location: "Cancún",
-    price: 450
+    price: 450,
+    geoData: { type: "Point", coordinates: [-86.8475009, 21.161908] }
   },
   {
     title: "Penthouse Suite",
@@ -63,7 +67,8 @@ const properties = [
     },
     country: "USA",
     location: "New York City, New York",
-    price: 1500
+    price: 1500,
+    geoData: { type: "Point", coordinates: [-74.006, 40.7128] }
   },
   {
     title: "Suburban Home",
@@ -74,7 +79,8 @@ const properties = [
     },
     country: "Australia",
     location: "Sydney, New South Wales",
-    price: 400
+    price: 400,
+    geoData: { type: "Point", coordinates: [151.2093, -33.8688] }
   },
   {
     title: "Cozy Cabin",
@@ -85,7 +91,8 @@ const properties = [
     },
     country: "USA",
     location: "Aspen, Colorado",
-    price: 300
+    price: 300,
+    geoData: { type: "Point", coordinates: [-106.8183, 39.1911] }
   },
   {
     title: "Luxury Farmhouse",
@@ -96,7 +103,8 @@ const properties = [
     },
     country: "France",
     location: "Provence",
-    price: 600
+    price: 600,
+    geoData: { type: "Point", coordinates: [5.113152, 43.529742] }
   },
   {
     title: "Urban Loft",
@@ -107,7 +115,8 @@ const properties = [
     },
     country: "Germany",
     location: "Berlin",
-    price: 250
+    price: 250,
+    geoData: { type: "Point", coordinates: [13.404954, 52.520008] }
   },
   {
     title: "Lake House",
@@ -118,42 +127,11 @@ const properties = [
     },
     country: "Canada",
     location: "Vancouver, British Columbia",
-    price: 500
-  },
-  {
-    title: "Desert Villa",
-    description: "A beautiful villa situated in a desert landscape, featuring a private pool and stunning sunset views. Ideal for those looking for a unique and secluded vacation.",
-    image: {
-      path: "https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHJlYWx8ZW58MHx8MHx8fDA%3D",
-      filename: "Rent a Property"
-    },
-    country: "UAE",
-    location: "Dubai",
-    price: 800
-  },
-  {
-    title: "Mountain Retreat",
-    description: "A luxurious mountain retreat with breathtaking views. Enjoy skiing in the winter or hiking in the summer. Includes hot tub and private chef services upon request.",
-    image: {
-      path: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHJlYWx8ZW58MHx8MHx8fDA%3D",
-      filename: "Rent a Property"
-    },
-    country: "Switzerland",
-    location: "Zermatt",
-    price: 950
-  },
-  {
-    title: "Ski Chalet",
-    description: "A luxurious ski chalet located near the slopes, perfect for a winter vacation. Fully equipped kitchen, sauna, and cozy living spaces make it ideal for groups.",
-    image: {
-      path: "https://plus.unsplash.com/premium_photo-1682377521697-bc598b52b08a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dmlsbGF8ZW58MHx8MHx8fDA%3D",
-      filename: "Rent a Property"
-    },
-    country: "France",
-    location: "Chamonix",
-    price: 1200
+    price: 500,
+    geoData: { type: "Point", coordinates: [-123.1216, 49.2827] }
   }
 ];
+
 
 
 // add owner name to listings
