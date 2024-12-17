@@ -69,6 +69,17 @@ app.use((req,res,next)=>{
 
 // Home Route
 app.get('/',wrapAsync(async(req,res)=>{
+    if(req.query.q){
+        // retune listing as user search
+        let q = req.query.q;
+        let data = await listing.find({
+            $or:[
+                {country:{$regex:q,$options:"i"}},
+                {location:{$regex:q,$options:"i"}}
+            ]
+        });
+        return res.render("index.ejs",{data});
+    }
 
     if(req.query.category){
         // Return filtered listings as JSON
