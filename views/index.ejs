@@ -73,14 +73,3 @@
     <br>
    
 </body>
-
-<script>
-    let searchBtn = document.querySelector('.serchBox button');
-    let searchInputValue = document.querySelector('.serchBox input').value;
-    let Alllistings = document.querySelectorAll('.flex-container a');
-    searchBtn.addEventListener('click',async()=>{
-       let ch = await fetch(`/?q=${searchInputValue}`);
-       let bt = await ch.json();
-       console.log(bt);
-    })
-</script>
