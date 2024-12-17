@@ -18,6 +18,7 @@ const properties = [
       filename: "Rent a Property"
     },
     country: "USA",
+    category:"Treding",
     location: "Miami, Florida",
     price: 1200,
     geoData: { type: "Point", coordinates: [-80.1917902, 25.7616798] }
@@ -29,6 +30,7 @@ const properties = [
       path: "https://images.unsplash.com/photo-1494526585095-c41746248156?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGhvdXNlfGVufDB8fDB8fHww",
       filename: "Rent a Property"
     },
+     category:"Tiny Homes",
     country: "Canada",
     location: "Toronto, Ontario",
     price: 350,
@@ -41,6 +43,7 @@ const properties = [
       path: "https://images.unsplash.com/photo-1472224371017-08207f84aaae?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvdXNlfGVufDB8fDB8fHww",
       filename: "Rent a Property"
     },
+    category:"Treding",
     country: "UK",
     location: "Cotswolds, England",
     price: 200,
@@ -53,6 +56,7 @@ const properties = [
       path: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG91c2V8ZW58MHx8MHx8fDA%3D",
       filename: "Rent a Property"
     },
+     category:"Tiny Homes",
     country: "Mexico",
     location: "Cancún",
     price: 450,
@@ -65,6 +69,7 @@ const properties = [
       path: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D",
       filename: "Rent a Property"
     },
+     category:"Tiny Homes",
     country: "USA",
     location: "New York City, New York",
     price: 1500,
@@ -77,6 +82,7 @@ const properties = [
       path: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D",
       filename: "Rent a Property"
     },
+    category:"Treding",
     country: "Australia",
     location: "Sydney, New South Wales",
     price: 400,
@@ -89,6 +95,7 @@ const properties = [
       path: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlYWwlMjBlc3RhdGV8ZW58MHx8MHx8fDA%3D",
       filename: "Rent a Property"
     },
+    category:"Rooms",
     country: "USA",
     location: "Aspen, Colorado",
     price: 300,
@@ -101,6 +108,7 @@ const properties = [
       path: "https://images.unsplash.com/photo-1560184897-ae75f418493e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlYWwlMjBlc3RhdGV8ZW58MHx8MHx8fDA%3D",
       filename: "Rent a Property"
     },
+    category:"Rooms",
     country: "France",
     location: "Provence",
     price: 600,
@@ -113,6 +121,7 @@ const properties = [
       path: "https://images.unsplash.com/photo-1592595896551-12b371d546d5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHJlYWwlMjBlc3RhdGV8ZW58MHx8MHx8fDA%3D",
       filename: "Rent a Property"
     },
+    category:"Rooms",
     country: "Germany",
     location: "Berlin",
     price: 250,
@@ -125,6 +134,7 @@ const properties = [
       path: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cmVhbHxlbnwwfHwwfHx8MA%3D%3D",
       filename: "Rent a Property"
     },
+    category:"Lakefront",
     country: "Canada",
     location: "Vancouver, British Columbia",
     price: 500,

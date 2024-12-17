@@ -2,12 +2,81 @@
     width:18rem;
 }
 
+/* index.js */
+
 .flex-container{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* align-items: center; */
 }
+
+/* Tax Switch Button */
+.taxSwitch{
+    border:black solid 0.3px;
+    border-radius: 8px;
+    width: 170px;
+    height: 50px;
+    display: flex;
+    margin-right: 60px;
+ }
+
+ @media(max-width:850px){
+    .taxSwitch{
+        display: none;
+    }
+ }
+
+ .taxSwitch:hover{
+    background-color: rgb(241, 241, 241);
+ }
+
+ .taxSwitch label{
+    position:relative;
+    left: -33px;
+    top:12px;
+    font-size: 13px;
+ }
+
+ .taxSwitch input{
+    position:relative;
+    right: -35px;
+    top:4px;
+    cursor: pointer;
+    font-size: 25px;
+ }
+
+ .filtersAndTax{
+    display: flex;
+    margin-top: 70px;
+    margin-left: 3.6rem ;
+    justify-content: space-between;
+    overflow: hidden;
+ }
+ .filters{
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: 0.5px;
+    font-size:20px;
+}
+
+.filter p{
+    font-size: 10px;
+}
+.filter{
+    opacity: 0.7;
+    margin-right: 17px;
+    text-align: center;
+}
+
+.filter:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+
+
 
 a{
     text-decoration: none;
@@ -21,6 +90,16 @@ a{
     text-overflow: ellipsis;
     overflow: hidden;
   white-space: nowrap;
+}
+
+.listingPrice{
+    margin-top: -13px;
+}
+
+.listingPrice i{
+    margin-left: 55px;
+    font-size: 12px;
+    visibility: hidden;
 }
 
 .card-title{

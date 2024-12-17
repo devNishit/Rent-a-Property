@@ -1,5 +1,9 @@
 <% layout('/layouts/boilerplate') -%>
 
+<!-- send listing data to js -->
+ <script>
+    const editListCategory = <%- JSON.stringify(data.category) %>
+ </script>
 <body>
     <form class="m-3 editform needs-validation" action="/listing/edit/<%= data._id %>?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
         <div class="mb-3">
@@ -46,14 +50,31 @@
               </div>
         </div>
     </div>
-        <div class="mb-3">
+    <div class="row">
+        <div class="mb-3 col-6 col-min-3">
             <label class="form-label" for="price" required>Price</label>
             <input placeholder="Enter Price for per night" value="<%= data.price %>" name="list[price]" id="price" class="form-control" required>
             <div class="invalid-feedback">
                 Please Add Price
               </div>
         </div>
-    
+        <div class="mb-3 col-6 col-min-3">
+            <label class="form-label" for="category">Listing Category</label>
+            <select name="list[category]" id="category" class="form-control editDropDown" >
+                <option value="Rooms">Rooms</option>
+                <option  value="Treding">Treding</option>
+                <option  value="Beach">Beach</option>
+                <option  value="Mountains">Mountains</option>
+                <option  value="Domes">Domes</option>
+                <option  value="Houseboats">Houseboats</option>
+                <option  value="Tiny Homes">Tiny Homes</option>
+                <option  value="Lakefront">Lakefront</option>
+                <option  value="Play">Play</option>
+                <option  value="Arctic">Arctic</option>
+            </select>
+            
+        </div>
+    </div>
         <input class="btn btn-primary" type="submit" value="Edit">
     </form>
 </body>

@@ -6,7 +6,8 @@ const listingSchema = Joi.object({
     // image:Joi.string().min(1).required(),
     country:Joi.string().min(1).required(),
     location:Joi.string().min(1).required(),
-    price:Joi.number().min(0).required()
+    price:Joi.number().min(0).required(),
+    category:Joi.string().min(1).required(),
 })
 
 module.exports.listingSchema = listingSchema;

@@ -1,4 +1,4 @@
-console.log(listingData.geoData.coordinates[1]);
+
 // Where you want to render the map.
 var element = document.getElementById('map');
 
@@ -19,4 +19,3 @@ map.setView(target, 12);
 // Place a marker on the same location.
 L.marker(target).addTo(map)
 .bindPopup(`<p class="title">${listingData.title}</p> Exact location of the listing.`);
-

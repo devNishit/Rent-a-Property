@@ -61,14 +61,16 @@ module.exports.editListing = async(req,res)=>{
         newData.image = {path,filename};
     }
 
+
+    let update = await listing.findByIdAndUpdate(id,newData,{runValidators: true});
+
     // upDate GeoData
     let location = req.body['list']['location'];
     let country = req.body['list']['country'];
-    newData.geoData = {coordinates: await featchGeoData(location,country), type:"Point"};
-
-
-    let update = await listing.findByIdAndUpdate(id,newData,{runValidators: true});
-    console.log(update);
+    if(update.country != country || update.location != location){
+        update.geoData = {coordinates: await featchGeoData(location,country), type:"Point"};
+        await update.save();
+    }
     req.flash('success','Listing successfully edited')
     res.redirect(`/listing/show/${id}`);
 }
@@ -88,13 +90,13 @@ module.exports.newListingForm = (req,res)=>{
 }
 
 // Add new listing
-
+    
 module.exports.addListing = async (req,res)=>{
 
     let formData = req.body['list']
     let newList= new listing(formData);
 
-    // add imageInfo
+    // add imageInfo    
     let {path, filename} = req.file;
     newList.image = {path,filename};
 

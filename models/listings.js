@@ -45,13 +45,18 @@ const listingSchema= new mongoose.Schema({
         type:{
             type:String,
             enum:['Point'],
-            default:"Point",
+            // default:"Point",
             required:true
         },
         coordinates:{
             type:[Number],
             required:true
         }
+    },
+    category:{
+        type:String,
+        required:true,
+        enum:['Rooms','Treding','Beach','Mountains','Domes','Houseboats','Tiny Homes','Lakefront','Play','Arctic'],
     },
             
 

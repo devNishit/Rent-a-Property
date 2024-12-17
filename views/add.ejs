@@ -44,13 +44,31 @@
               </div>
         </div>
     </div>
-        <div class="mb-3">
+    <div class="row">
+        <div class="mb-3 col-6 col-min-3">
             <label class="form-label" for="price">Price</label>
             <input placeholder="Enter Price for per night" name="list[price]" id="price" class="form-control" required>
             <div class="invalid-feedback">
                 Please Add Price
               </div>
         </div>
+        <div class="mb-3 col-6 col-min-3">
+            <label class="form-label" for="category">Listing Category</label>
+            <select name="list[category]" id="category" class="form-control" >
+                <option value="Rooms">Rooms</option>
+                <option  value="Treding">Treding</option>
+                <option  value="Beach">Beach</option>
+                <option  value="Mountains">Mountains</option>
+                <option  value="Domes">Domes</option>
+                <option value="Houseboats">Houseboats</option>
+                <option  value="Tiny Homes">Tiny Homes</option>
+                <option  value="Lakefront">Lakefront</option>
+                <option  value="Play">Play</option>
+                <option  value="Arctic">Arctic</option>
+            </select>
+            
+        </div>
+    </div>
     
         <input class="btn btn-primary" type="submit" value="Add">
     </form>

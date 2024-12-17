@@ -69,9 +69,16 @@ app.use((req,res,next)=>{
 
 // Home Route
 app.get('/',wrapAsync(async(req,res)=>{
-    let data= await listing.find({});
-    res.render("index.ejs",{data});
-})) 
+
+    if(req.query.category){
+        // Return filtered listings as JSON
+        let data= await listing.find({category:req.query.category});
+        return res.json(data);
+    }else{
+        let data= await listing.find({});
+        return res.render("index.ejs",{data});
+    }
+}));
 
 
 // Other routes

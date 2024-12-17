@@ -1,8 +1,60 @@
 <% layout('/layouts/boilerplate') -%>
 <body>
-    <h2 class="m-3">All Properties</h2>
+
+<div class="filtersAndTax">
+    <!-- filters -->
+    <div class="filters">
+        <div class="filter">
+            <i class="fa-solid fa-bed"></i>
+            <p>Rooms</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-fire"></i></i>
+            <p>Treding</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-umbrella-beach"></i>
+            <p>Beach</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-mountain-sun"></i>
+            <p>Mountains</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-igloo"></i>
+            <p>Domes</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-ship"></i>
+            <p>Houseboats</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-house-chimney-window"></i>
+            <p>Tiny Homes</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-water"></i>
+            <p>Lakefront</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-trophy"></i>
+            <p>Play</p>
+        </div>
+        <div class="filter">
+            <i class="fa-regular fa-snowflake"></i>
+            <p>Arctic</p>
+        </div>
+    </div>
+
+    <!-- Tax-button switch -->
+    <div class="form-check form-switch taxSwitch">
+  <label class="form-check-label" for="flexSwitchCheckDefault">Rate after Taxes</label>
+  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+</div>
+</div>
+
+<!-- all listings -->
    
-    <a class="m-3 btn-primary btn addbtn" href="/listing/add">Add New</a><br><br>
     <div class="flex-container">
 
          <% for (const list of data) { %>
@@ -11,6 +63,9 @@
                 <div class="card-body" >
                 <h5 class="card-title">  <%= list.title %> </h5>
                 <p class="card-text listingDec"><%= list.description %></p>
+                <div class="listingPrice">
+                    <p class="card-text">&dollar; <span value="<%= list.price %>"> <%= list.price %></span>/night <i> applied 10% Tax.</i></p>
+                </div>
                 </div>
             </a>
             <% } %>
