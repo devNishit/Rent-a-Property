@@ -28,11 +28,11 @@ app.use(flash());
 
 // Session
 const sessionInfo ={
-    secret:"ReantAProprrty",
+    secret:process.env.SECRET,
     resave:true,
     saveUninitialized: false,
     cookie:{
-        expires:Date.now()+ 7*24*60*60*1000
+        expires:Date.now()+ 7*24*60*60*1000,
     }
 
 }
