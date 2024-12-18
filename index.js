@@ -8,6 +8,7 @@ const engine= require('ejs-mate');
 const expressError= require('./utils/expressError');
 const wrapAsync = require('./utils/wrapAsync');
 const session = require('express-session');
+const mongoStore = require('connect-mongo');
 const flash= require('express-flash');
 const passport = require('passport');
 
@@ -26,8 +27,26 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(flash());
 
+// connection to mongooes
+const mongoDb = process.env.MONGO_DB
+async function main(){
+    mongoose.connect(mongoDb);
+}
+
+main().catch(e=>console.log(e));
+
+
 // Session
+const store = mongoStore.create({
+    mongoUrl:mongoDb,
+    crypto:{
+        secret:process.env.SECRET
+    },
+    touchAfter:24*3600
+})
+
 const sessionInfo ={
+    store,
     secret:process.env.SECRET,
     resave:true,
     saveUninitialized: false,
@@ -43,13 +62,6 @@ app.use(session(sessionInfo));
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// connection to mongooes
-async function main(){
-    mongoose.connect('mongodb://127.0.0.1:27017/RentProperty');
-}
-
-main().catch(e=>console.log(e));
 
 // Midderware for flashMsg and UserInfo
 app.use((req,res,next)=>{
