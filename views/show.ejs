@@ -23,6 +23,7 @@
     <button class="btn-danger btn">Delete</button>
     </form>
     <% } %>
+    <hr>
  
     <!-- Add review -->
     <div class="review-container">
@@ -74,7 +75,7 @@
     <div class="reviewList row">
     
       <%  for(let rev of reviewList){ %>
-            <div class="card m-3">
+            <div class="card m-3 reviewCard">
                 <div class="card-body">
                     <p><i class="fa-solid fa-user"></i><%= rev.owner.username %></p>
                     
@@ -99,6 +100,10 @@
             </div>
        <% } %>
     </div>
+
+    <% if(reviewList.length){ %>
+        <hr>
+   <% } %>
 
     <!-- Map -->
     <p class="h3">Navigation</p>

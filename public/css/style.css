@@ -8,7 +8,23 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+   
 }
+@media(max-width:580px){
+    .listing-card{
+        width: 70vw;
+    }
+
+}
+@media(max-width:450px){
+    .listing-card{
+        width: 90vw;
+    }
+
+}
+
+
+
 
 /* Tax Switch Button */
 .taxSwitch{
@@ -110,6 +126,8 @@ a{
     display: inline;
     margin-left: 15px;
 }
+
+/* Show.ejs */
 .img-fluid{
     width:70vw;
     height: 50vh;
@@ -119,11 +137,36 @@ a{
     margin-bottom: 10px;
 }
 
+
 .img-fluid-con{
 margin-top: 35px;
 width:70vw;
 margin-bottom: 10px;
 
+}
+
+@media(max-width:650px){
+    .img-fluid-con{
+        width: 100vw;
+        align-items: center;
+        
+    }
+
+    .img-fluid{
+        width: 100vw;
+        height: 30vh;
+    }
+
+    #map{
+        width: 100vw;
+    }
+
+}
+
+@media(max-width:350px){
+    .reviewCard{
+        width: 90vw;
+    }
 }
 
 .copyright{
@@ -134,9 +177,10 @@ i{
     margin-right: 5px;
 }
 
-nav{
+/* navbar */
+/* nav{
     margin-bottom: 1000px;
-}
+} */
 
 .addform, .editform{
     margin-top: 65px !important;
@@ -201,10 +245,9 @@ body{
 
 /* NavBar */
 .serchBox{
-    /* background-color: black; */
     display: flex;
     gap: 10px;
-    margin-right: 11rem;
+    margin-right: 20rem;
     
     
 }
@@ -216,11 +259,28 @@ body{
     border: none;
     padding-left:5px;
     border-radius: 5px;
+    font-size: 15px;
 }
+@media(max-width:991px){
+    .serchBox input{
+        height: 30px;
+    }
+    .serchBox button{
+        height: 30px;
+        align-items: center;
+        text-align: center;
+        padding: 1px 5px 5px 5px;
 
-@media(max-width:1120px){
+    }
+ }
+@media(max-width:1200px){
     .serchBox{
-        margin-right: 3rem;
+        margin-right: 5rem;
+    }
+ }
+ @media(max-width:1292px){
+    .serchBox{
+        margin-right: 10rem;
     }
  }
 
@@ -229,3 +289,21 @@ body{
         flex-wrap: wrap;
     }
  }
+
+ @media(max-width:575px){
+    .serchBox{
+        display: flex;
+        align-items: center;
+    }
+ }
+ @media(max-width:450px){
+    .listing-card{
+        width: 90vw;
+    }
+
+    .filtersAndTax{
+        margin-left: 1.6rem;
+        
+    }
+
+}
