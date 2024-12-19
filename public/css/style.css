@@ -182,6 +182,8 @@ i{
     margin-bottom: 1000px;
 } */
 
+
+
 .addform, .editform{
     margin-top: 65px !important;
     
@@ -233,6 +235,10 @@ body{
     margin-top: 3.6rem;
 }
 
+.originalImg{
+    width: 200px;
+    height: 112px;
+}
 .EditImg p{
     
     font-size: 12px;
@@ -306,4 +312,20 @@ body{
         
     }
 
+}
+
+/* register.ejs and login.ejs*/ 
+@media(max-width:900px){
+    .registerDiv, .loginDiv{
+        width: 90vw;
+        margin: 10% 10% 10% 5%;
+        /* background-color: aqua */
+    }
+}
+
+@media(max-width:442px){
+    .formRow{
+        display: flex;
+        flex-direction: column;
+    }
 }
