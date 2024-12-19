@@ -50,7 +50,7 @@ let taxBtn = document.querySelector('.taxSwitch input');
          
          // add listings
          for (const list of listing) {
-              let listingsHtml = `<a class="m-3 pl-3 card" href="listing/show/${list._id}">
+              let listingsHtml = `<a class="m-3 pl-3 card listing-card" href="listing/show/${list._id}">
               <img src="${list.image.path}" class="card-img-top">
               <div class="card-body" >
               <h5 class="card-title">${list.title}</h5>
